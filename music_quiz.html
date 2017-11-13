@@ -1,0 +1,79 @@
+<html>
+<head>
+<title>jQuery Hello World</title>
+
+	<script type="text/javascript" src="jquery-latest.min.js"></script>
+	<script type="text/javascript" src="jquery.jplayer.min.js"></script>
+
+</head>
+<body>
+
+	<h1>Quiz : Guess the song in a second.</h1>
+	<br/><br/>
+
+	<button id="button_1"><h2>노래 1</h2></button>
+	<button id="button_2"><h2>노래 2</h2></button>
+	<button id="button_3"><h2>노래 3</h2></button>
+	<button id="button_4"><h2>노래 4</h2></button>
+	<br/><br/>
+
+	<div id="jquery_jplayer_1"></div>
+	<div id="jp_container_1">
+		<a href="#" class="jp-play">Play</a>
+		<a href="#" class="jp-pause">Pause</a>
+	</div><br/><br/>
+
+	<div id="music_title" style="font-size:45px"><div>
+
+	<script>
+	$("#jquery_jplayer_1").jPlayer({
+		ready: function(event) {
+			$(this).jPlayer("setMedia", {
+				title: "Bubble",
+				m4a: "sailing_together.mp3",
+				oga: "sailing_together.mp3"
+			});
+		},
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true,
+		remainingDuration: true,
+		toggleDuration: true,
+        	cssSelectorAncestor: "#jp_container_1",
+        	swfPath: "resource/js",
+        	supplied: "m4a, oga"
+	});
+
+	music_change = function(music_path) {
+	        $("#jquery_jplayer_1").jPlayer("destroy");
+	        $("#jquery_jplayer_1").jPlayer({
+	       	ready: function () {
+	       	    $(this).jPlayer("setMedia", {
+	                m4a:music_path
+	            });
+	        },
+		wmode: "window",
+		useStateClassSkin: true,
+		autoBlur: false,
+		smoothPlayBar: true,
+		keyEnabled: true,
+		remainingDuration: true,
+		toggleDuration: true,
+	        cssSelectorAncestor: "#jp_container_1",
+	        swfPath: "resource/js",
+	        supplied: "m4a, oga"
+	        });
+	}
+
+	$("#button_1").click(function(){music_change("music_1.mp3");	$("#music_title").html("music_1");	document.getElementById("button_1").style.backgroundColor = "#00ff00";	});
+	$("#button_2").click(function(){music_change("music_2.mp3");    $("#music_title").html("music_2");      document.getElementById("button_2").style.backgroundColor = "#00ff00";	});
+	$("#button_3").click(function(){music_change("music_3.mp3");    $("#music_title").html("music_3");      document.getElementById("button_3").style.backgroundColor = "#00ff00";	});
+	$("#button_4").click(function(){music_change("music_4.mp3");    $("#music_title").html("music_4");      document.getElementById("button_4").style.backgroundColor = "#00ff00";	});
+	</script>
+
+	
+
+</body>
+</html>
